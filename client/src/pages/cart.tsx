@@ -159,20 +159,16 @@ export default function CartPage() {
           </div>
         </div>
 
-        <Button
-          className="w-full mt-6 gap-2"
-          size="lg"
-          onClick={() =>
-            toast({
-              title: "Checkout",
-              description: "Checkout functionality coming soon!",
-            })
-          }
-          data-testid="button-checkout"
-        >
-          Proceed to Checkout
-          <ArrowRight className="w-4 h-4" />
-        </Button>
+        <Link href="/checkout">
+          <Button
+            className="w-full mt-6 gap-2"
+            size="lg"
+            data-testid="button-checkout"
+          >
+            Proceed to Checkout
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        </Link>
 
         <Link href="/shop">
           <Button variant="ghost" className="w-full mt-2 gap-2 text-muted-foreground" data-testid="button-back-to-shop">
