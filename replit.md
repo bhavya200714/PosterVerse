@@ -28,7 +28,7 @@ PosterVerse is a modern ecommerce website for premium aesthetic posters. Built w
 - **contact_messages**: id, name, email, subject, message, createdAt
 
 ## Categories
-Cars, Anime, Cricket, Football
+Cars, Anime, Cricket, Football, Others
 
 ## Currency & Pricing
 - Currency: INR (₹) throughout the site
@@ -38,7 +38,7 @@ Cars, Anime, Cricket, Football
 
 ## Key Files
 - `shared/schema.ts` - Database schema and types
-- `server/seed.ts` - Database seeding with 12 products (random INR pricing)
+- `server/seed.ts` - Database seeding with 26 products (random INR pricing)
 - `client/src/lib/cart-store.ts` - Cart logic with localStorage
 - `client/src/components/product-card.tsx` - Reusable product card
 - `client/src/components/navbar.tsx` - Sticky nav with cart counter
@@ -48,4 +48,4 @@ Cars, Anime, Cricket, Football
 - Font Sans: Inter
 - Font Serif: Playfair Display
 - Warm beige/neutral color palette
-- 12 user-uploaded poster images in `/client/public/images/` (jpeg format)
+- 26 user-uploaded poster images in `/client/public/images/` (jpeg format)
