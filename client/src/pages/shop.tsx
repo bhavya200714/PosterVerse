@@ -15,6 +15,7 @@ const categories = [
   { label: "Anime", value: "anime" },
   { label: "Cricket", value: "cricket" },
   { label: "Football", value: "football" },
+  { label: "Others", value: "others" },
 ];
 
 function ProductGridSkeleton() {
