@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 
 const recentBuyers = [
-  { name: "Sarah M.", product: "Geometric Harmony", location: "New York" },
-  { name: "James K.", product: "Neon Nights", location: "London" },
-  { name: "Akira T.", product: "Golden Dawn", location: "Tokyo" },
-  { name: "Maria L.", product: "Stay Wild", location: "Barcelona" },
-  { name: "David R.", product: "Samurai Sunset", location: "Sydney" },
+  { name: "Rahul M.", product: "Ford Mustang Shelby GT500", location: "Mumbai" },
+  { name: "Akira T.", product: "Gojo Satoru Domain Expansion", location: "Tokyo" },
+  { name: "Priya S.", product: "Virat Kohli Action Frame", location: "Delhi" },
+  { name: "James K.", product: "Cristiano Ronaldo CR7 Legend", location: "London" },
+  { name: "Ankit R.", product: "MS Dhoni Captain Cool", location: "Bangalore" },
 ];
 
 export default function RecentPurchasePopup() {

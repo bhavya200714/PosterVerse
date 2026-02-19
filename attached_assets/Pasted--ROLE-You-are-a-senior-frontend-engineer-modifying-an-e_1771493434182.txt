@@ -1,0 +1,172 @@
+⸻
+
+🔹 ROLE
+
+You are a senior frontend engineer modifying an existing ecommerce project.
+
+Do not rebuild from scratch.
+Audit the current codebase and implement clean modifications without breaking layout, logic, or responsiveness.
+
+Maintain existing structure and architecture.
+
+⸻
+
+🔹 OBJECTIVE
+
+Apply the following updates across the entire PosterVerse website.
+
+Do not skip any detail.
+
+If a requirement is unclear, ask before editing.
+
+⸻
+
+🔹 REQUIRED CHANGES
+
+⸻
+
+1️⃣ FREE SHIPPING UPDATE
+
+Change all instances of:
+
+“Free Shipping above ₹X”
+
+To:
+
+Free Shipping on orders above ₹500
+
+Make sure:
+• It reflects in banners
+• It reflects in checkout
+• It reflects anywhere mentioned
+
+⸻
+
+2️⃣ RETURN POLICY UPDATE
+
+Change:
+
+“Easy Returns – 14 Days”
+
+To:
+
+Easy Returns – 7 Days Return Policy
+
+Update:
+• Footer
+• Product pages
+• Policy sections
+• Anywhere mentioned
+
+Keep formatting consistent.
+
+⸻
+
+3️⃣ SHOP CATEGORIES UPDATE
+
+Replace existing categories with:
+
+• Cars
+• Anime
+• Cricket
+• Football
+
+Update:
+
+• Filter dropdown
+• Category buttons
+• Category tags in product data
+• Search filtering logic
+• Any hardcoded category arrays
+
+Ensure filtering still works correctly.
+
+⸻
+
+4️⃣ GLOBAL CURRENCY CHANGE
+
+Change entire website currency to:
+
+INR (₹)
+
+All prices must display as:
+
+₹XXX
+
+Do not mix with Rs. or $.
+
+Standard format:
+₹ 220
+
+⸻
+
+5️⃣ RANDOM PRICE LOGIC
+
+Poster prices must randomly be selected from:
+
+200
+210
+220
+230
+240
+250
+
+Use JavaScript logic to randomly assign one of these prices to each product on load.
+
+Ensure:
+• Price remains consistent per product during session
+• Cart calculations use assigned price
+• localStorage saves correct price
+
+Do not re-randomize price once added to cart.
+
+⸻
+
+6️⃣ SHOP IMAGES UPDATE
+
+I will upload new poster images.
+
+You must:
+
+• Replace existing product images with uploaded images
+• Use AI-based logic to automatically generate product name based on image content
+• Rename product title according to what suits best
+
+Examples:
+
+Car poster → “Porsche GT3 RS Poster”
+Anime poster → “Attack Titan Minimal Art Poster”
+Cricket poster → “Virat Kohli Action Frame Poster”
+Football poster → “Cristiano Ronaldo Stadium Poster”
+
+Names must:
+• Sound premium
+• Be short
+• Be ecommerce-ready
+
+Do not use generic names like “Poster 1”.
+
+⸻
+
+🔹 PRESERVE
+
+• Cart functionality
+• Toast notifications
+• Responsive layout
+• Animations
+• Hover effects
+• LocalStorage logic
+• Performance
+
+Do not break existing UI.
+
+⸻
+
+🔹 OUTPUT REQUIREMENTS
+	1.	List all modified files
+	2.	Show updated code sections clearly
+	3.	Confirm category filtering works
+	4.	Confirm currency format is consistent
+	5.	Confirm cart logic works after changes
+
+Do not remove any existing premium UI styling.

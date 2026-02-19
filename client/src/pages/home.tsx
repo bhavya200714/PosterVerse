@@ -48,7 +48,7 @@ export default function Home() {
               Premium Aesthetic Posters for Your Space
             </h1>
             <p className="mt-4 text-base sm:text-lg text-white/75 max-w-md leading-relaxed">
-              Curated wall art that transforms any room into a gallery. From minimal to anime, find your perfect print.
+              Curated wall art that transforms any room into a gallery. From cars to anime, cricket to football — find your perfect print.
             </p>
             <div className="flex flex-wrap items-center gap-3 mt-8">
               <Link href="/shop">
@@ -70,9 +70,9 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" data-testid="section-features">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {[
-            { icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
+            { icon: Truck, title: "Free Shipping", desc: "On orders above \u20B9500" },
             { icon: Shield, title: "Premium Quality", desc: "Museum-grade prints" },
-            { icon: RotateCcw, title: "Easy Returns", desc: "30-day return policy" },
+            { icon: RotateCcw, title: "Easy Returns", desc: "7 Days Return Policy" },
           ].map((feature) => (
             <div key={feature.title} className="flex items-center gap-3 p-4 rounded-md bg-card border">
               <div className="flex items-center justify-center w-10 h-10 rounded-md bg-secondary">
@@ -144,17 +144,17 @@ export default function Home() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { name: "Minimal", image: "/images/poster-minimal-1.png", slug: "minimal" },
-            { name: "Anime", image: "/images/poster-anime-1.png", slug: "anime" },
-            { name: "Nature", image: "/images/poster-nature-1.png", slug: "nature" },
-            { name: "Quotes", image: "/images/poster-quotes-1.png", slug: "quotes" },
+            { name: "Cars", image: "/images/poster-cars-1.jpeg", slug: "cars" },
+            { name: "Anime", image: "/images/poster-anime-1.jpeg", slug: "anime" },
+            { name: "Cricket", image: "/images/poster-cricket-1.jpeg", slug: "cricket" },
+            { name: "Football", image: "/images/poster-football-1.jpeg", slug: "football" },
           ].map((cat) => (
             <Link key={cat.slug} href={`/shop?category=${cat.slug}`}>
               <div className="group relative rounded-md overflow-hidden cursor-pointer" data-testid={`card-category-${cat.slug}`}>
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full aspect-square object-cover"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />

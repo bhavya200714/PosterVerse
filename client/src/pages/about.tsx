@@ -11,8 +11,8 @@ export default function About() {
           <p className="mt-4 text-muted-foreground leading-relaxed">
             We believe that every wall tells a story. PosterVerse was born from a simple idea: 
             make premium, aesthetic wall art accessible to everyone. Our curated collection spans 
-            from minimalist abstracts to vibrant anime illustrations, nature photography to 
-            motivational typography.
+            from iconic cars to vibrant anime illustrations, cricket legends to 
+            football superstars.
           </p>
         </div>
       </section>
@@ -28,15 +28,15 @@ export default function About() {
             },
             {
               icon: Globe,
-              title: "Worldwide Shipping",
+              title: "Free Shipping",
               description:
-                "We ship to over 50 countries with careful packaging to ensure your poster arrives in perfect condition, every time.",
+                "Free Shipping on orders above \u20B9500. Careful packaging to ensure your poster arrives in perfect condition, every time.",
             },
             {
               icon: Leaf,
-              title: "Sustainable Printing",
+              title: "Easy Returns",
               description:
-                "Our posters are printed on FSC-certified paper using eco-friendly inks. Beautiful art that's kind to the planet.",
+                "Easy Returns \u2013 7 Days Return Policy. Our posters are printed on FSC-certified paper using eco-friendly inks.",
             },
           ].map((item) => (
             <div

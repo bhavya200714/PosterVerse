@@ -1,108 +1,117 @@
 import { db } from "./db";
 import { products } from "@shared/schema";
 
+const PRICES = [200, 210, 220, 230, 240, 250];
+
+function randomPrice() {
+  return PRICES[Math.floor(Math.random() * PRICES.length)];
+}
+
 const seedProducts = [
   {
-    name: "Geometric Harmony",
-    description: "A stunning minimalist poster featuring clean geometric shapes in neutral earth tones. Perfect for modern spaces that crave simplicity and elegance. Printed on premium 250gsm matte paper.",
-    price: 29.99,
-    image: "/images/poster-minimal-1.png",
-    category: "Minimal",
+    name: "Ford Mustang Shelby GT500",
+    description: "A bold tribute to the iconic 1967 Shelby GT500CR 545. Ultra-light carbon fiber cladding meets raw American muscle in this stunning matte black poster. Perfect for car enthusiasts and collectors. Printed on premium 250gsm matte paper.",
+    price: randomPrice(),
+    image: "/images/poster-cars-1.jpeg",
+    category: "Cars",
     featured: true,
   },
   {
-    name: "Mountain Lines",
-    description: "A serene single-line mountain landscape drawing in classic black ink on cream. Scandinavian-inspired design that brings calm to any room. Museum-quality archival print.",
-    price: 24.99,
-    image: "/images/poster-minimal-2.png",
-    category: "Minimal",
+    name: "Ferrari F1 V12 Racer",
+    description: "Feel the roar of the Ferrari V12 engine with this top-down view of the iconic red F1 car. Featuring detailed specs and the legendary prancing horse badge. A must-have for Formula 1 fans. Museum-quality archival print.",
+    price: randomPrice(),
+    image: "/images/poster-cars-2.jpeg",
+    category: "Cars",
     featured: false,
   },
   {
-    name: "Organic Forms",
-    description: "Abstract organic shapes in warm terracotta and sage green tones. A bohemian-modern poster that adds warmth and character. Giclée printed for vibrant, long-lasting color.",
-    price: 27.99,
-    image: "/images/poster-minimal-3.png",
-    category: "Minimal",
+    name: "Land Rover Defender 110",
+    description: "The rugged elegance of the Defender 110 captured in stunning detail. 5.0L V12 power meets classic British engineering in this premium matte black poster. Built for adventure, designed for your wall.",
+    price: randomPrice(),
+    image: "/images/poster-cars-3.jpeg",
+    category: "Cars",
     featured: false,
   },
   {
-    name: "Samurai Sunset",
-    description: "A dramatic anime-style illustration of a lone samurai on a clifftop overlooking the ocean at sunset. Inspired by Studio Ghibli's masterful storytelling. Vivid, fade-resistant inks.",
-    price: 34.99,
-    image: "/images/poster-anime-1.png",
+    name: "Mercedes AMG G63 Brabus",
+    description: "The ultimate statement of luxury performance. The Brabus-tuned AMG G63 with 900HP dominates this poster in striking grey. Detailed specs and German engineering excellence on display. Premium satin finish.",
+    price: randomPrice(),
+    image: "/images/poster-cars-4.jpeg",
+    category: "Cars",
+    featured: true,
+  },
+  {
+    name: "Monkey D. Luffy Wanted Poster",
+    description: "The legendary Straw Hat pirate's bounty poster brought to life. Monkey D. Luffy with his iconic grin and a bounty of 500,000,000 berries. A timeless One Piece collectible for every anime fan. Archival-quality print.",
+    price: randomPrice(),
+    image: "/images/poster-anime-1.jpeg",
     category: "Anime",
     featured: true,
   },
   {
-    name: "Neon Nights",
-    description: "Immerse yourself in a cyberpunk Tokyo streetscape glowing with neon pink and electric blue. Detailed manga-style art that captures the energy of the future city. Premium satin finish.",
-    price: 32.99,
-    image: "/images/poster-anime-2.png",
-    category: "Anime",
-    featured: true,
-  },
-  {
-    name: "Spirit Forest",
-    description: "Step into a mystical anime woodland filled with fireflies and an ancient shrine gate. Ethereal lighting and rich color create a magical atmosphere. Archival-quality print.",
-    price: 31.99,
-    image: "/images/poster-anime-3.png",
+    name: "Spider-Man Web Slinger",
+    description: "Your friendly neighborhood Spider-Man in a stunning Marvel Studios collector edition poster. Peter Parker's dual identity captured in cinematic detail with the iconic NYC skyline. Premium satin finish with vivid, fade-resistant inks.",
+    price: randomPrice(),
+    image: "/images/poster-anime-2.jpeg",
     category: "Anime",
     featured: false,
   },
   {
-    name: "Golden Dawn",
-    description: "Majestic misty mountains bathed in golden dawn light. Fine art nature photography that brings the grandeur of the outdoors to your wall. Printed on heavyweight fine art paper.",
-    price: 36.99,
-    image: "/images/poster-nature-1.png",
-    category: "Nature",
+    name: "Gojo Satoru Domain Expansion",
+    description: "The strongest sorcerer of Jujutsu High in his signature pose. This stunning manga collage captures Gojo Satoru's most iconic moments from Jujutsu Kaisen. Bold black and white art with incredible detail. Gallery-grade print.",
+    price: randomPrice(),
+    image: "/images/poster-anime-3.jpeg",
+    category: "Anime",
     featured: true,
   },
   {
-    name: "Ocean Bliss",
-    description: "A breathtaking aerial view of turquoise waves meeting white sand. This tropical paradise photograph transports you to paradise. UV-resistant archival inks ensure lasting beauty.",
-    price: 34.99,
-    image: "/images/poster-nature-2.png",
-    category: "Nature",
+    name: "Itachi Uchiha Akatsuki Legend",
+    description: "The legendary Uchiha prodigy in his Akatsuki cloak, Sharingan blazing. This striking Naruto poster captures Itachi's enigmatic presence with manga panel art background. A masterpiece for every shinobi fan.",
+    price: randomPrice(),
+    image: "/images/poster-anime-4.jpeg",
+    category: "Anime",
     featured: false,
   },
   {
-    name: "Autumn Path",
-    description: "Wander through a magical forest path blanketed in golden autumn leaves. Atmospheric fog and warm light create an enchanting scene. Gallery-grade canvas-texture paper.",
-    price: 33.99,
-    image: "/images/poster-nature-3.png",
-    category: "Nature",
+    name: "Starry Night Van Gogh Art",
+    description: "Vincent van Gogh's masterpiece reimagined as a premium wall poster. The swirling night sky reflected over calm waters creates a mesmerizing atmosphere. A timeless piece of art for any space. Printed on heavyweight fine art paper.",
+    price: randomPrice(),
+    image: "/images/poster-anime-5.jpeg",
+    category: "Anime",
     featured: false,
   },
   {
-    name: "Create Your Sunshine",
-    description: "An elegant motivational typography poster with warm, uplifting energy. The serif lettering on a soft gradient background is perfect for home offices and creative spaces.",
-    price: 22.99,
-    image: "/images/poster-quotes-1.png",
-    category: "Quotes",
-    featured: false,
-  },
-  {
-    name: "Stay Wild",
-    description: "Bold modern typography against a dark, textured background. A minimalist statement piece for those with an adventurous spirit. Matte laminate finish for durability.",
-    price: 24.99,
-    image: "/images/poster-quotes-2.png",
-    category: "Quotes",
+    name: "Virat Kohli Action Frame",
+    description: "King Kohli in his element — a powerful collage of the greatest modern batsman's iconic moments. From match-winning celebrations to record-breaking innings. 'If there is 1% chance, that chance is good enough.' Premium matte finish.",
+    price: randomPrice(),
+    image: "/images/poster-cricket-1.jpeg",
+    category: "Cricket",
     featured: true,
   },
   {
-    name: "Dream Without Limits",
-    description: "Graceful calligraphy on a soft watercolor wash in blush pink and gold. An inspiring reminder to dream big, perfect for bedrooms and studios. Premium watercolor paper.",
-    price: 26.99,
-    image: "/images/poster-quotes-3.png",
-    category: "Quotes",
+    name: "MS Dhoni Captain Cool",
+    description: "Captain Cool in his legendary helicopter shot pose. This dynamic poster captures Dhoni's most iconic cricketing moments in a stunning blue and black collage. A tribute to India's greatest captain. Archival-quality print.",
+    price: randomPrice(),
+    image: "/images/poster-cricket-2.jpeg",
+    category: "Cricket",
     featured: false,
+  },
+  {
+    name: "Cristiano Ronaldo CR7 Legend",
+    description: "The GOAT in his classic Manchester United celebration. This bold red poster captures Ronaldo's raw emotion and power on the pitch. Number 7 in all his glory. Vivid, fade-resistant inks on premium matte paper.",
+    price: randomPrice(),
+    image: "/images/poster-football-1.jpeg",
+    category: "Football",
+    featured: true,
   },
 ];
 
 export async function seedDatabase() {
   const existing = await db.select().from(products);
-  if (existing.length === 0) {
+  if (existing.length === 0 || existing[0].category === "Minimal") {
+    if (existing.length > 0) {
+      await db.delete(products);
+    }
     await db.insert(products).values(seedProducts);
     console.log("Database seeded with", seedProducts.length, "products");
   }

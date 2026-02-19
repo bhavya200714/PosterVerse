@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, Link } from "wouter";
-import { ShoppingBag, ArrowLeft, Minus, Plus } from "lucide-react";
+import { ShoppingBag, ArrowLeft, Minus, Plus, Truck, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -93,7 +93,7 @@ export default function ProductPage() {
             {product.name}
           </h1>
           <p className="text-2xl font-semibold mt-3" data-testid="text-product-price">
-            ${product.price.toFixed(2)}
+            {"\u20B9"} {product.price}
           </p>
           <p className="text-muted-foreground mt-4 leading-relaxed text-sm" data-testid="text-product-description">
             {product.description}
@@ -129,6 +129,14 @@ export default function ProductPage() {
           </div>
 
           <div className="mt-8 space-y-3 border-t pt-6">
+            <div className="flex items-center gap-2 text-sm">
+              <Truck className="w-4 h-4 text-muted-foreground" />
+              <span>Free Shipping on orders above {"\u20B9"}500</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <RotateCcw className="w-4 h-4 text-muted-foreground" />
+              <span>Easy Returns – 7 Days Return Policy</span>
+            </div>
             <div className="flex items-center gap-2 text-sm">
               <span className="text-muted-foreground">Category:</span>
               <span className="font-medium capitalize">{product.category}</span>

@@ -27,19 +27,20 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold mb-3">Shop</h4>
             <div className="flex flex-col gap-2">
-              <Link href="/shop?category=minimal" className="text-sm text-muted-foreground">Minimal</Link>
+              <Link href="/shop?category=cars" className="text-sm text-muted-foreground">Cars</Link>
               <Link href="/shop?category=anime" className="text-sm text-muted-foreground">Anime</Link>
-              <Link href="/shop?category=nature" className="text-sm text-muted-foreground">Nature</Link>
-              <Link href="/shop?category=quotes" className="text-sm text-muted-foreground">Quotes</Link>
+              <Link href="/shop?category=cricket" className="text-sm text-muted-foreground">Cricket</Link>
+              <Link href="/shop?category=football" className="text-sm text-muted-foreground">Football</Link>
             </div>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold mb-3">Company</h4>
+            <h4 className="text-sm font-semibold mb-3">Info</h4>
             <div className="flex flex-col gap-2">
               <Link href="/about" className="text-sm text-muted-foreground">About Us</Link>
               <Link href="/contact" className="text-sm text-muted-foreground">Contact</Link>
-              <Link href="/shop" className="text-sm text-muted-foreground">All Posters</Link>
+              <span className="text-sm text-muted-foreground">Free Shipping on orders above {"\u20B9"}500</span>
+              <span className="text-sm text-muted-foreground">Easy Returns – 7 Days Return Policy</span>
             </div>
           </div>
         </div>

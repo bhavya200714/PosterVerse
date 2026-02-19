@@ -62,6 +62,8 @@ export default function CartPage() {
     );
   }
 
+  const shippingFree = total >= 500;
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-testid="page-cart">
       <h1 className="text-3xl font-serif font-bold mb-2">Shopping Cart</h1>
@@ -93,7 +95,7 @@ export default function CartPage() {
                 {item.product.category}
               </p>
               <p className="text-sm font-semibold mt-1" data-testid={`text-cart-price-${item.product.id}`}>
-                ${item.product.price.toFixed(2)}
+                {"\u20B9"} {item.product.price}
               </p>
             </div>
 
@@ -138,16 +140,21 @@ export default function CartPage() {
         <div className="space-y-3">
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Subtotal</span>
-            <span>${total.toFixed(2)}</span>
+            <span>{"\u20B9"} {total}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Shipping</span>
-            <span>{total >= 50 ? "Free" : "$5.99"}</span>
+            <span>{shippingFree ? "Free" : "\u20B9 49"}</span>
           </div>
+          {!shippingFree && (
+            <p className="text-xs text-muted-foreground">
+              Free Shipping on orders above {"\u20B9"}500
+            </p>
+          )}
           <div className="border-t pt-3 flex items-center justify-between font-semibold">
             <span>Total</span>
             <span data-testid="text-cart-total">
-              ${(total >= 50 ? total : total + 5.99).toFixed(2)}
+              {"\u20B9"} {shippingFree ? total : total + 49}
             </span>
           </div>
         </div>

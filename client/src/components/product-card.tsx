@@ -67,7 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
           <p className="text-sm text-muted-foreground mt-0.5" data-testid={`text-price-${product.id}`}>
-            ${product.price.toFixed(2)}
+            {"\u20B9"} {product.price}
           </p>
         </div>
       </Card>

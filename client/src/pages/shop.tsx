@@ -11,10 +11,10 @@ import { type Product } from "@shared/schema";
 
 const categories = [
   { label: "All", value: "all" },
-  { label: "Minimal", value: "minimal" },
+  { label: "Cars", value: "cars" },
   { label: "Anime", value: "anime" },
-  { label: "Nature", value: "nature" },
-  { label: "Quotes", value: "quotes" },
+  { label: "Cricket", value: "cricket" },
+  { label: "Football", value: "football" },
 ];
 
 function ProductGridSkeleton() {
