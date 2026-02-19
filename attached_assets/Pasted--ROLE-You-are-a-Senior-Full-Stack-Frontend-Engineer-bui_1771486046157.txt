@@ -1,0 +1,225 @@
+⸻
+
+🔹 ROLE
+
+You are a Senior Full-Stack Frontend Engineer building a production-ready ecommerce website.
+
+You do not generate tutorial code.
+You generate structured, scalable, deployable code.
+
+Think like a UI engineer shipping a real product.
+
+⸻
+
+🔹 OBJECTIVE
+
+Build a modern ecommerce website called:
+
+PosterVerse
+
+Inspired by high-converting ecommerce brands (like the reference layout provided).
+
+The website must feel:
+
+• Premium
+• Clean
+• Modern
+• Aesthetic
+• Conversion-focused
+• Mobile-first
+• Smooth and interactive
+
+Not basic. Not template-like.
+
+⸻
+
+🔹 DESIGN DIRECTION
+
+Visual inspiration:
+
+• Light background (soft off-white or subtle gradient background)
+• Strong black CTA buttons
+• Large product images
+• Modern typography (Google Font – Inter or Poppins)
+• Clear spacing system
+• Minimal clutter
+• Smooth hover animations
+
+Use a subtle background such as:
+	•	Very light beige gradient
+	•	Or soft neutral grey gradient
+	•	Or minimal blurred abstract gradient
+
+Background must feel premium — not colorful or childish.
+
+⸻
+
+🔹 TECH STACK
+
+Use:
+
+• HTML
+• CSS
+• Vanilla JavaScript
+• localStorage for cart persistence
+
+No frameworks.
+
+Organize as:
+
+/index.html
+/shop.html
+/product.html
+/cart.html
+/about.html
+/contact.html
+/style.css
+/script.js
+
+Clean separation of files.
+
+⸻
+
+🔹 NAVIGATION STRUCTURE
+
+Sticky Navbar:
+
+Home | Shop | About | Contact | Cart
+
+• Logo on left (PosterVerse)
+• Cart icon with dynamic counter
+• Responsive hamburger menu on mobile
+
+⸻
+
+🔹 REQUIRED FEATURES
+
+1️⃣ Home Page
+
+• Large hero banner
+• Title: “Premium Aesthetic Posters for Your Space”
+• Shop Now CTA
+• Featured products grid
+• Promotional banner (example: “Buy 2 Get 6 – Limited Offer”)
+
+⸻
+
+2️⃣ Shop Page
+
+• Responsive grid layout
+• Product cards with:
+	•	Image
+	•	Name
+	•	Price
+	•	Quick Add button
+	•	Wishlist icon
+
+• Search bar
+• Category filter (Minimal / Anime / Nature / Quotes)
+• Sort dropdown
+
+Hover effects:
+• Image zoom
+• Elevated shadow
+• Button animation
+
+⸻
+
+3️⃣ Product Page
+
+• Large product image
+• Title
+• Description
+• Price
+• Add to Cart
+• Related products
+
+Two-column desktop layout
+Stacked mobile layout
+
+⸻
+
+4️⃣ Cart Page
+
+• List items
+• Quantity + / -
+• Remove item
+• Live total calculation
+• Checkout button (dummy)
+
+Cart must:
+• Save to localStorage
+• Update cart counter live
+• Show toast notification on add
+
+Toast style:
+• Top-right
+• Fade animation
+• Auto dismiss
+
+⸻
+
+5️⃣ About Page
+
+Minimal brand story.
+
+⸻
+
+6️⃣ Contact Page
+
+• Clean form
+• Modern styled inputs
+• Social links
+
+⸻
+
+🔹 UX ADDITIONS (Premium Feel)
+
+• Floating WhatsApp-style support button
+• “Someone recently bought…” small popup
+• Smooth scrolling
+• Soft shadow depth system
+• 8px spacing consistency
+• Rounded corners (10–14px)
+
+Make interactions feel smooth and premium.
+
+⸻
+
+🔹 RESPONSIVENESS
+
+Desktop:
+• 3–4 column grid
+
+Tablet:
+• 2 columns
+
+Mobile:
+• 1 column
+
+Touch-friendly buttons.
+
+⸻
+
+🔹 PERFORMANCE
+
+• Use Unsplash placeholder images
+• Lazy load images
+• Clean semantic HTML
+• Alt tags included
+
+⸻
+
+🔹 OUTPUT REQUIREMENTS
+
+Generate:
+
+• Full folder structure
+• All complete files
+• Working cart logic
+• Clean, deploy-ready code
+
+Do not explain theory.
+Deliver full working website code.
+
+If any requirement is unclear, ask before generating.
