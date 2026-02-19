@@ -1,0 +1,157 @@
+🔹 ROLE
+
+You are a senior frontend engineer integrating real-time email order notifications using EmailJS into an existing ecommerce project.
+
+Do NOT rebuild the website.
+Modify and enhance the existing checkout system cleanly.
+
+Preserve all UI, cart logic, and localStorage functionality.
+
+⸻
+
+🔹 OBJECTIVE
+
+Integrate EmailJS so that:
+
+When a user clicks Place Order:
+	•	Order details are emailed to the store owner
+	•	Order details are also emailed to the customer (optional confirmation)
+	•	Cart data is included
+	•	Form details are included
+	•	Total amount is included
+	•	After success → cart clears → confirmation message shows
+
+⸻
+
+🔹 STEP 1 – CHECKOUT FORM REQUIREMENTS
+
+Ensure checkout page collects:
+
+• Full Name
+• Email
+• Phone
+• Full Address
+• Pincode
+
+All fields required.
+
+⸻
+
+🔹 STEP 2 – ORDER DATA COLLECTION
+
+When user clicks “Place Order”:
+
+Collect:
+	•	Customer name
+	•	Customer email
+	•	Phone
+	•	Address
+	•	Pincode
+	•	Cart items (name, quantity, price)
+	•	Total amount
+
+Format cart items as readable string:
+
+Example:
+
+Porsche GT3 Poster ×2 – ₹440
+Anime Titan Poster ×1 – ₹220
+
+⸻
+
+🔹 STEP 3 – EMAILJS INTEGRATION
+
+Implement EmailJS using:
+
+• CDN script
+• Proper initialization
+• Secure public key
+
+Add EmailJS script in HTML:
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+Initialize with:
+
+emailjs.init("YOUR_PUBLIC_KEY");
+
+Create send function:
+
+emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+    customer_name: name,
+    customer_email: email,
+    phone: phone,
+    address: address,
+    products: productList,
+    total: totalAmount
+});
+
+Make placeholders clearly marked so I can insert:
+	•	SERVICE_ID
+	•	TEMPLATE_ID
+	•	PUBLIC_KEY
+
+⸻
+
+🔹 STEP 4 – SUCCESS FLOW
+
+After successful email send:
+
+• Show success toast
+• Clear cart from localStorage
+• Reset cart UI
+• Redirect to Thank You section or show confirmation message
+
+If email fails:
+
+• Show error message
+• Do NOT clear cart
+
+⸻
+
+🔹 STEP 5 – SECURITY RULES
+
+• Do not expose secret keys
+• Use only EmailJS public key
+• Validate form before sending
+• Prevent multiple submissions (disable button while sending)
+
+⸻
+
+🔹 STEP 6 – CONFIRMATION EMAIL (Optional Enhancement)
+
+Add second email template to send confirmation to customer:
+
+Subject:
+Your Order is Confirmed – PosterVerse
+
+Include:
+	•	Order summary
+	•	Total amount
+	•	Thank you message
+
+⸻
+
+🔹 PRESERVE
+
+• Existing cart logic
+• Price calculations
+• Currency format (₹)
+• UI design
+• Animations
+
+Do not break current layout.
+
+⸻
+
+🔹 OUTPUT REQUIREMENTS
+	1.	List modified files
+	2.	Show updated checkout HTML
+	3.	Show updated script.js logic
+	4.	Show EmailJS integration code
+	5.	Confirm order flow works
+
+Do not rewrite entire project.
+Only integrate EmailJS cleanly.
+
+⸻
