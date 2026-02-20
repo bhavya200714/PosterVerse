@@ -24,7 +24,7 @@ PosterVerse is a modern ecommerce website for premium aesthetic posters. Built w
 - `POST /api/contact` - Submit contact form
 
 ## Data Model
-- **products**: id, name, description, price, image, category, featured
+- **products**: id, name, description, price, discountPrice, image, category, featured
 - **contact_messages**: id, name, email, subject, message, createdAt
 
 ## Categories
@@ -32,7 +32,9 @@ Cars, Anime, Cricket, Football, Others
 
 ## Currency & Pricing
 - Currency: INR (₹) throughout the site
-- Prices: whole numbers randomly from [200, 210, 220, 230, 240, 250]
+- Original prices: whole numbers randomly from [200, 210, 220, 230, 240, 250] (shown with strikethrough)
+- Discount prices: ₹95, ₹100, or ₹110 (assigned via name hash, consistent across reloads)
+- Cart totals use discount prices
 - Free Shipping on orders above ₹500 (otherwise ₹49 shipping)
 - Easy Returns – 7 Days Return Policy
 

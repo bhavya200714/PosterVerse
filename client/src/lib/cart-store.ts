@@ -30,7 +30,7 @@ export function getCartCount(): number {
 }
 
 export function getCartTotal(): number {
-  return getCart().reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  return getCart().reduce((sum, item) => sum + (item.product.discountPrice ?? item.product.price) * item.quantity, 0);
 }
 
 export function addToCart(product: Product, quantity: number = 1) {

@@ -91,7 +91,7 @@ export default function CheckoutPage() {
 
   const formatProductList = (cartItems: CartItem[]): string => {
     return cartItems
-      .map((item) => `${item.product.name} \u00D7${item.quantity} \u2013 \u20B9${item.product.price * item.quantity}`)
+      .map((item) => `${item.product.name} \u00D7${item.quantity} \u2013 \u20B9${(item.product.discountPrice ?? item.product.price) * item.quantity}`)
       .join("\n");
   };
 
@@ -160,7 +160,7 @@ export default function CheckoutPage() {
             {orderData.items.map((item) => (
               <div key={item.product.id} className="flex items-center justify-between gap-2" data-testid={`row-success-item-${item.product.id}`}>
                 <span className="truncate" data-testid={`text-success-product-${item.product.id}`}>{item.product.name} {"\u00D7"}{item.quantity}</span>
-                <span className="shrink-0" data-testid={`text-success-price-${item.product.id}`}>{"\u20B9"} {item.product.price * item.quantity}</span>
+                <span className="shrink-0" data-testid={`text-success-price-${item.product.id}`}>{"\u20B9"} {(item.product.discountPrice ?? item.product.price) * item.quantity}</span>
               </div>
             ))}
             <div className="border-t pt-2 mt-2 flex items-center justify-between font-semibold text-foreground">
@@ -294,7 +294,7 @@ export default function CheckoutPage() {
                     <p className="text-sm font-medium truncate" data-testid={`text-checkout-product-${item.product.id}`}>{item.product.name}</p>
                     <p className="text-xs text-muted-foreground">{"\u00D7"}{item.quantity}</p>
                   </div>
-                  <p className="text-sm font-medium shrink-0" data-testid={`text-checkout-price-${item.product.id}`}>{"\u20B9"} {item.product.price * item.quantity}</p>
+                  <p className="text-sm font-medium shrink-0" data-testid={`text-checkout-price-${item.product.id}`}>{"\u20B9"} {(item.product.discountPrice ?? item.product.price) * item.quantity}</p>
                 </div>
               ))}
             </div>

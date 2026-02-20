@@ -66,9 +66,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           <h3 className="text-sm font-medium truncate" data-testid={`text-name-${product.id}`}>
             {product.name}
           </h3>
-          <p className="text-sm text-muted-foreground mt-0.5" data-testid={`text-price-${product.id}`}>
-            {"\u20B9"} {product.price}
-          </p>
+          <div className="flex items-center gap-2 mt-0.5" data-testid={`text-price-${product.id}`}>
+            <span className="text-sm line-through text-muted-foreground/60">
+              {"\u20B9"}{product.price}
+            </span>
+            <span className="text-sm font-bold text-foreground">
+              {"\u20B9"}{product.discountPrice}
+            </span>
+          </div>
         </div>
       </Card>
     </Link>

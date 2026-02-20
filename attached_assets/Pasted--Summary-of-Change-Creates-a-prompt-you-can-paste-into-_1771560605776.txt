@@ -1,0 +1,120 @@
+🔹 Summary of Change
+
+Creates a prompt you can paste into Replit AI to implement discounted pricing logic across all posters, keep original price visible (strikethrough), and dynamically assign discounted prices (₹95 / ₹100 / ₹110) based on image quality.
+
+⸻
+
+🔹 Replit AI Instruction (Copy This)
+
+I want to implement a discount pricing system in PosterVerse.
+
+Follow these instructions carefully and do NOT break existing functionality.
+
+🎯 Objective:
+	•	Keep original poster prices (₹200–₹250 range).
+	•	Display original price with strikethrough.
+	•	Add a new discounted price.
+	•	Discounted price must be either ₹95, ₹100, or ₹110.
+	•	AI should assign discount tier based on image quality.
+
+────────────────────────
+
+1️⃣ Update Product Data Structure
+
+Locate where product objects are defined.
+
+For every product:
+	•	Keep the existing price field as the original price.
+	•	Add a new field: discountPrice.
+
+Do NOT remove or rename the original price field.
+
+────────────────────────
+
+2️⃣ Image Quality Logic (Automatic Tier System)
+
+Implement this rule:
+
+IF image resolution is:
+	•	Very high resolution (e.g., width ≥ 2000px) → discountPrice = 110
+	•	Medium resolution (e.g., 1200px–1999px) → discountPrice = 100
+	•	Lower resolution (below 1200px) → discountPrice = 95
+
+If resolution cannot be dynamically detected:
+	•	Estimate using image file size.
+	•	If still not possible, randomly assign among 95/100/110 but ensure consistent assignment (not changing on every reload).
+
+Discounted price must not change every refresh.
+
+────────────────────────
+
+3️⃣ UI Update (Product Card)
+
+Modify product card layout:
+
+Show:
+
+₹OriginalPrice (with strikethrough styling)
+₹DiscountPrice (highlighted, bold, premium look)
+
+Example layout:
+
+₹249  →  ₹100
+
+Requirements:
+	•	Original price styled with line-through and lighter color.
+	•	Discount price larger and bold.
+	•	Maintain premium aesthetic.
+	•	Keep INR symbol.
+	•	Keep responsive design intact.
+
+────────────────────────
+
+4️⃣ Cart Logic Update
+
+VERY IMPORTANT:
+
+Cart must use discountPrice as the actual payable price.
+	•	Update add-to-cart logic to store discountPrice instead of original price.
+	•	Ensure localStorage cart calculations use discountPrice.
+	•	Ensure total calculation reflects discounted pricing.
+
+Do NOT break:
+	•	Toast notifications
+	•	Quantity updates
+	•	Cart total calculation
+	•	Existing product ID logic
+
+────────────────────────
+
+5️⃣ Safety Rules
+	•	Do not delete any existing product objects.
+	•	Do not remove original pricing.
+	•	Do not change currency format.
+	•	Do not break search/filter logic.
+	•	Do not affect category structure.
+	•	Preserve random pricing generation (₹200–₹250) for original price only.
+
+────────────────────────
+
+6️⃣ Final Verification Checklist
+
+Before finishing:
+	•	All posters show both prices.
+	•	Discount tier correctly assigned.
+	•	Cart total reflects discounted price.
+	•	No console errors.
+	•	UI still responsive and premium.
+	•	Prices do NOT change on page reload.
+
+Only modify necessary files and sections.
+
+⸻
+
+🔹 What This Will Affect
+
+• UI impact: Product cards will show dual pricing (original + discounted).
+• Backend impact: None (unless product data is API-based).
+• Cart impact: Cart totals will now use discounted prices.
+• Local storage impact: Stores discounted price instead of original.
+• Risk warning: If discountPrice is not stored consistently, totals may mismatch on reload — ensure stable assignment logic.

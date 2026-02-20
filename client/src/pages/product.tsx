@@ -92,9 +92,17 @@ export default function ProductPage() {
           <h1 className="text-2xl sm:text-3xl font-serif font-bold" data-testid="text-product-name">
             {product.name}
           </h1>
-          <p className="text-2xl font-semibold mt-3" data-testid="text-product-price">
-            {"\u20B9"} {product.price}
-          </p>
+          <div className="flex items-center gap-3 mt-3" data-testid="text-product-price">
+            <span className="text-xl line-through text-muted-foreground/60">
+              {"\u20B9"}{product.price}
+            </span>
+            <span className="text-2xl font-bold">
+              {"\u20B9"}{product.discountPrice}
+            </span>
+            <span className="text-sm font-medium text-green-600 dark:text-green-400">
+              {Math.round(((product.price - product.discountPrice) / product.price) * 100)}% off
+            </span>
+          </div>
           <p className="text-muted-foreground mt-4 leading-relaxed text-sm" data-testid="text-product-description">
             {product.description}
           </p>

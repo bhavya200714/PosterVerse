@@ -94,9 +94,14 @@ export default function CartPage() {
               <p className="text-xs text-muted-foreground capitalize mt-0.5">
                 {item.product.category}
               </p>
-              <p className="text-sm font-semibold mt-1" data-testid={`text-cart-price-${item.product.id}`}>
-                {"\u20B9"} {item.product.price}
-              </p>
+              <div className="flex items-center gap-2 mt-1" data-testid={`text-cart-price-${item.product.id}`}>
+                <span className="text-xs line-through text-muted-foreground/60">
+                  {"\u20B9"}{item.product.price}
+                </span>
+                <span className="text-sm font-semibold">
+                  {"\u20B9"}{item.product.discountPrice}
+                </span>
+              </div>
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
