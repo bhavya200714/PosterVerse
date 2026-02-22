@@ -11,6 +11,8 @@ export const products = pgTable("products", {
   discountPrice: real("discount_price").notNull(),
   image: text("image").notNull(),
   category: text("category").notNull(),
+  orientation: text("orientation").notNull().default("portrait"),
+  isNew: boolean("is_new").default(false),
   featured: boolean("featured").default(false),
 });
 

@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ShoppingBag, Heart } from "lucide-react";
+import { ShoppingBag, Heart, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { type Product } from "@shared/schema";
@@ -30,6 +30,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         data-testid={`card-product-${product.id}`}
       >
         <div className="relative rounded-md overflow-hidden bg-card">
+          {product.isNew && (
+            <div className="absolute top-3 left-3 z-10 flex items-center gap-1 bg-foreground text-background text-xs font-bold px-2 py-1 rounded-full shadow-lg" data-testid={`badge-new-${product.id}`}>
+              NEW <Flame className="w-3 h-3" />
+            </div>
+          )}
           <img
             src={product.image}
             alt={product.name}

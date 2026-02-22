@@ -18,6 +18,11 @@ const categories = [
   { label: "Others", value: "others" },
 ];
 
+const orientations = [
+  { label: "All", value: "all" },
+  { label: "Portrait", value: "portrait" },
+];
+
 function ProductGridSkeleton() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -39,6 +44,7 @@ export default function Shop() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState(initialCategory);
+  const [orientation, setOrientation] = useState("all");
   const [sortBy, setSortBy] = useState("default");
 
   const { data: products, isLoading } = useQuery<Product[]>({
@@ -52,6 +58,10 @@ export default function Shop() {
 
     if (category !== "all") {
       filtered = filtered.filter((p) => p.category.toLowerCase() === category.toLowerCase());
+    }
+
+    if (orientation !== "all") {
+      filtered = filtered.filter((p) => p.orientation === orientation);
     }
 
     if (searchQuery) {
@@ -77,7 +87,7 @@ export default function Shop() {
     }
 
     return filtered;
-  }, [products, category, searchQuery, sortBy]);
+  }, [products, category, orientation, searchQuery, sortBy]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-testid="page-shop">
@@ -115,7 +125,7 @@ export default function Shop() {
         </Select>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 mb-6">
+      <div className="flex flex-wrap items-center gap-2 mb-4">
         {categories.map((cat) => (
           <Button
             key={cat.value}
@@ -125,6 +135,21 @@ export default function Shop() {
             data-testid={`button-category-${cat.value}`}
           >
             {cat.label}
+          </Button>
+        ))}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 mb-6">
+        <span className="text-xs text-muted-foreground mr-1">Orientation:</span>
+        {orientations.map((o) => (
+          <Button
+            key={o.value}
+            variant={orientation === o.value ? "default" : "outline"}
+            size="sm"
+            onClick={() => setOrientation(o.value)}
+            data-testid={`button-orientation-${o.value}`}
+          >
+            {o.label}
           </Button>
         ))}
       </div>
@@ -144,6 +169,7 @@ export default function Shop() {
             onClick={() => {
               setSearchQuery("");
               setCategory("all");
+              setOrientation("all");
             }}
             data-testid="button-clear-filters"
           >

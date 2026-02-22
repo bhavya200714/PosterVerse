@@ -12,9 +12,10 @@ PosterVerse is a modern ecommerce website for premium aesthetic posters. Built w
 
 ## Pages
 - `/` - Home: Hero banner, featured products, promo section, category browsing
-- `/shop` - Shop: Product grid with search, category filters, sort
+- `/shop` - Shop: Product grid with search, category filters, orientation filters, sort
 - `/product/:id` - Product detail with quantity selector, related products
 - `/cart` - Cart with quantity controls, totals, checkout
+- `/custom-studio` - Custom Studio: Premium custom poster ordering (₹200→₹140)
 - `/about` - Brand story, values, stats
 - `/contact` - Contact form (saves to database)
 
@@ -24,7 +25,7 @@ PosterVerse is a modern ecommerce website for premium aesthetic posters. Built w
 - `POST /api/contact` - Submit contact form
 
 ## Data Model
-- **products**: id, name, description, price, discountPrice, image, category, featured
+- **products**: id, name, description, price, discountPrice, image, category, orientation, isNew, featured
 - **contact_messages**: id, name, email, subject, message, createdAt
 
 ## Categories
@@ -40,7 +41,7 @@ Cars, Anime, Cricket, Football, Others
 
 ## Key Files
 - `shared/schema.ts` - Database schema and types
-- `server/seed.ts` - Database seeding with 26 products (random INR pricing)
+- `server/seed.ts` - Database seeding with 44 products (random INR pricing)
 - `client/src/lib/cart-store.ts` - Cart logic with localStorage
 - `client/src/components/product-card.tsx` - Reusable product card
 - `client/src/components/navbar.tsx` - Sticky nav with cart counter
@@ -50,4 +51,4 @@ Cars, Anime, Cricket, Football, Others
 - Font Sans: Inter
 - Font Serif: Playfair Display
 - Warm beige/neutral color palette
-- 26 user-uploaded poster images in `/client/public/images/` (jpeg format)
+- 44 user-uploaded poster images in `/client/public/images/` (jpeg format)

@@ -13,6 +13,7 @@ import CartPage from "@/pages/cart";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import CheckoutPage from "@/pages/checkout";
+import CustomStudioPage from "@/pages/custom-studio";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/checkout" component={CheckoutPage} />
+      <Route path="/custom-studio" component={CustomStudioPage} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,194 @@
+--- 
+
+# 🔹 Summary of Change
+
+Add new posters with AI-based category + orientation detection, enhance filtering, introduce a premium Custom Studio section with discount pricing and high-conversion UI — but remove upload functionality and replace it with a clean instructional message for custom orders.
+
+---
+
+# 🔹 Replit AI Instruction (Copy This)
+
+We are upgrading PosterVerse with new posters and a Premium Custom Studio section.
+
+This is a React (TypeScript) + Express + PostgreSQL application.
+
+Do NOT break cart logic, discount pricing, Razorpay integration, category filters, search, or responsiveness.
+
+Only modify necessary files.
+
+────────────────────────
+1️⃣ ADD NEW POSTERS (SMART ARRANGEMENT)
+────────────────────────
+
+I have added new poster images.
+
+Tasks:
+
+• Analyze image filenames to detect category:
+
+* Cars
+* Anime
+* Cricket
+* Football
+  • If no match → create category: "Others"
+
+• Detect orientation using dimensions:
+
+* width > height → Landscape
+* height > width → Portrait
+
+Add orientation filter buttons:
+
+All | Portrait | Landscape
+
+Ensure:
+• Works alongside category filters
+• Works with search
+• No filter conflicts
+• Responsive
+
+Add "NEW 🔥" badge on newly added posters only.
+
+Do NOT modify existing product objects.
+
+────────────────────────
+2️⃣ CREATE PREMIUM “CUSTOM STUDIO” PAGE
+────────────────────────
+
+Create new page:
+
+client/src/pages/custom-studio.tsx
+
+Add route:
+"/custom-studio"
+
+Add navbar link:
+Custom Studio
+
+────────────────────────
+3️⃣ PREMIUM HIGH-CONVERSION BANNER
+────────────────────────
+
+At top of Custom Studio page:
+
+Add animated circular rotating text badge:
+
+"⚡ LIMITED TIME • CUSTOM DROP • FLAT 50% OFF •"
+
+Use smooth CSS rotation animation.
+
+Main heading:
+"Build Your Custom Poster Now"
+
+Subtext:
+"Lowest Rate Possible – Premium Matte Finish – HD Print Quality"
+
+Pricing display:
+
+₹200 (strikethrough, muted tone)
+₹140 (bold, highlighted)
+
+Add GOLD gradient badge:
+"Premium Product"
+
+Add delivery badges below:
+
+🚚 Delivered in 4–6 Days
+🎨 HD Print Quality
+🖼 Premium Matte Finish
+
+Make this section visually distinct:
+• Soft gradient background
+• Elevated card styling
+• Subtle glow
+• Fully responsive
+
+────────────────────────
+4️⃣ REMOVE ALL UPLOAD FUNCTIONALITY
+────────────────────────
+
+Remove:
+
+• Any file upload inputs
+• Any preview logic
+• Any multer routes related to custom posters
+• Any upload-related API calls
+• Any upload-related state variables
+
+Ensure no unused imports remain.
+
+Do NOT touch Razorpay routes.
+
+────────────────────────
+5️⃣ ADD CUSTOM ORDER INSTRUCTION MESSAGE
+────────────────────────
+
+Under the pricing section, add this exact message inside a clean card:
+
+"If you wish to order a custom poster, kindly select this product and add it to your cart. After placing your order, we will contact you shortly regarding your custom design."
+
+Styling requirements:
+
+• Center aligned
+• Soft background
+• Rounded corners
+• Professional typography
+• Premium look
+• Responsive
+
+No upload fields should exist.
+
+────────────────────────
+6️⃣ CUSTOM PRODUCT LOGIC
+────────────────────────
+
+Custom Poster must:
+
+originalPrice: 200
+discountPrice: 140
+isPremium: true
+
+Cart must use ₹140 for total calculation.
+
+Do NOT change pricing logic for other posters.
+
+────────────────────────
+7️⃣ SAFETY RULES
+────────────────────────
+
+• Do NOT break category filters
+• Do NOT break orientation filters
+• Do NOT break search
+• Do NOT break Razorpay integration
+• Do NOT break discount logic
+• Maintain INR format
+• Maintain responsiveness
+• No console errors
+
+────────────────────────
+8️⃣ FINAL CHECKLIST
+────────────────────────
+
+Before finishing:
+
+• New posters categorized correctly
+• Orientation filter works
+• NEW badge visible
+• Custom Studio route works
+• Premium banner renders correctly
+• No upload functionality remains
+• Custom Poster adds to cart correctly
+• ₹200 → ₹140 discount works
+• Cart total correct
+• Payment flow unaffected
+• Fully responsive
+
+Only modify required components.
+
+Do not refactor unrelated code.
+
+────────────────────────
+
+End of update.
+
+---
