@@ -502,12 +502,89 @@ const seedProducts = [
     isNew: true,
     featured: false,
   },
+  {
+    name: "Optimus Prime - Transformers",
+    description: "The legendary leader of the Autobots in a stunning cinematic close-up. Optimus Prime's intricate mechanical detail and glowing blue eyes captured in a dark, atmospheric palette. A masterpiece for every Transformers fan. Premium matte finish.",
+    price: randomPrice(),
+    discountPrice: discountTier("Optimus Prime - Transformers"),
+    image: "/images/download_3.jpg",
+    category: "Others",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
+  {
+    name: "Spider-Man Glitch Art",
+    description: "A futuristic take on the web-slinger with vibrant pink and teal glitch effects. This modern digital art style brings a unique energy to the iconic Spider-Man. Perfect for contemporary spaces and Marvel fans. Premium satin finish.",
+    price: randomPrice(),
+    discountPrice: discountTier("Spider-Man Glitch Art"),
+    image: "/images/download_4.jpg",
+    category: "Anime",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Goku Focus Ultra Instinct",
+    description: "Goku in his most powerful state, focused and ready for battle. Dramatic lighting highlights every muscle in this high-contrast monochrome masterpiece. A symbol of pure determination. Gallery-grade archival print.",
+    price: randomPrice(),
+    discountPrice: discountTier("Goku Focus Ultra Instinct"),
+    image: "/images/download_5.jpg",
+    category: "Anime",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
+  {
+    name: "Judy Hopps Zootopia",
+    description: "Officer Judy Hopps peeking out with her signature determined look. Stunning 3D animation detail makes the fur and eyes look incredibly lifelike. A charming addition to any room. Printed on heavyweight fine art paper.",
+    price: randomPrice(),
+    discountPrice: discountTier("Judy Hopps Zootopia"),
+    image: "/images/download_6.jpg",
+    category: "Others",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Tom & Jerry Newspaper",
+    description: "The classic duo in a creative 3D render, bursting through a vintage newspaper. Tom's mischievous grin and Jerry's playful escape captured in high-fidelity animation style. Nostalgic yet modern. Premium matte finish.",
+    price: randomPrice(),
+    discountPrice: discountTier("Tom & Jerry Newspaper"),
+    image: "/images/download_7.jpg",
+    category: "Others",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Doraemon & Friends Spring",
+    description: "A heartwarming scene of Doraemon, Nobita, Shizuka, Gian, and Suneo enjoying a sunny day under cherry blossoms. Vibrant colors and a joyful atmosphere bring this childhood classic to life. Premium satin print.",
+    price: randomPrice(),
+    discountPrice: discountTier("Doraemon & Friends Spring"),
+    image: "/images/download_8.jpg",
+    category: "Anime",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Spider-Man: Until You Win",
+    description: "Miles Morales in a gritty, urban-style poster with motivational typography: 'They won't care until you win.' A powerful cinematic shot from above the city streets. Bold, inspirational, and visually striking. Premium matte paper.",
+    price: randomPrice(),
+    discountPrice: discountTier("Spider-Man: Until You Win"),
+    image: "/images/until_you_win.jpg",
+    category: "Anime",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
 ];
 
 export async function seedDatabase() {
   const existing = await db.select().from(products);
   const hasNewField = existing.length > 0 && existing[0].isNew != null;
-  const hasEnoughProducts = existing.length >= 44;
+  const hasEnoughProducts = existing.length >= 51;
   if (existing.length === 0 || !hasNewField || !hasEnoughProducts) {
     if (existing.length > 0) {
       await db.delete(products);
