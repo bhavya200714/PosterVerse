@@ -24,6 +24,16 @@ export async function registerRoutes(
     res.json(product);
   });
 
+  app.post("/api/orders", async (req, res) => {
+    try {
+      const order = req.body;
+      console.log("New Order:", JSON.stringify(order, null, 2));
+      return res.status(200).json({ success: true });
+    } catch (err) {
+      return res.status(500).json({ error: "Order failed" });
+    }
+  });
+
   app.post("/api/contact", async (req, res) => {
     const result = insertContactMessageSchema.safeParse(req.body);
     if (!result.success) {

@@ -3,6 +3,7 @@ import { type Product } from "@shared/schema";
 export interface CartItem {
   product: Product;
   quantity: number;
+  selectedSize?: string;
 }
 
 const CART_KEY = "posterverse_cart";
@@ -33,13 +34,19 @@ export function getCartTotal(): number {
   return getCart().reduce((sum, item) => sum + (item.product.discountPrice ?? item.product.price) * item.quantity, 0);
 }
 
-export function addToCart(product: Product, quantity: number = 1) {
+export function getShippingDetails(total: number) {
+  const threshold = 399;
+  const shipping = total >= threshold ? 0 : 30;
+  return { threshold, shipping, isFree: total >= threshold };
+}
+
+export function addToCart(product: Product, quantity: number = 1, selectedSize?: string) {
   const items = getCart();
-  const existing = items.find((item) => item.product.id === product.id);
+  const existing = items.find((item) => item.product.id === product.id && item.selectedSize === selectedSize);
   if (existing) {
     existing.quantity += quantity;
   } else {
-    items.push({ product, quantity });
+    items.push({ product, quantity, selectedSize });
   }
   saveCart(items);
 }

@@ -24,7 +24,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={product.id === -1 ? "/custom-studio" : `/product/${product.id}`}>
       <Card
         className="group cursor-pointer overflow-visible border-transparent bg-transparent shadow-none"
         data-testid={`card-product-${product.id}`}
@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full aspect-[3/4] object-cover"
+            className="w-full aspect-[3/4] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
             loading="lazy"
             data-testid={`img-product-${product.id}`}
           />

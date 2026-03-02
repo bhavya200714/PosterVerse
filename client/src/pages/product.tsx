@@ -14,9 +14,12 @@ export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [showSizeModal, setShowSizeModal] = useState(false);
 
-  const { data: product, isLoading } = useQuery<Product>({
+  const { data: product, isLoading, error } = useQuery<Product>({
     queryKey: ["/api/products", id],
+    retry: false,
   });
 
   const { data: allProducts } = useQuery<Product[]>({
@@ -29,10 +32,14 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     if (!product) return;
-    addToCart(product, quantity);
+    if (!selectedSize) {
+      setShowSizeModal(true);
+      return;
+    }
+    addToCart(product, quantity, selectedSize);
     toast({
       title: "Added to cart",
-      description: `${quantity}x ${product.name} added to your cart.`,
+      description: `${quantity}x ${product.name} (${selectedSize}) added to your cart.`,
     });
   };
 
@@ -52,10 +59,10 @@ export default function ProductPage() {
     );
   }
 
-  if (!product) {
+  if (error || !product) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <h2 className="text-xl font-medium">Product not found</h2>
+        <h2 className="text-xl font-medium">Product not found or failed to load</h2>
         <Link href="/shop">
           <Button variant="outline" className="mt-4 gap-2">
             <ArrowLeft className="w-4 h-4" />
@@ -68,20 +75,51 @@ export default function ProductPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-testid="page-product">
+      {showSizeModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm">
+          <Card className="p-6 max-w-sm w-full shadow-2xl animate-in fade-in zoom-in duration-200">
+            <h3 className="text-lg font-bold mb-4">Please select the size of your poster.</h3>
+            <div className="flex gap-4 mb-6">
+              {["A4", "A3"].map((size) => (
+                <Button
+                  key={size}
+                  variant={selectedSize === size ? "default" : "outline"}
+                  className="flex-1"
+                  onClick={() => setSelectedSize(size)}
+                >
+                  {size}
+                </Button>
+              ))}
+            </div>
+            <Button className="w-full" onClick={() => {
+              if (selectedSize) {
+                setShowSizeModal(false);
+                handleAddToCart();
+              }
+            }}>
+              Confirm & Add to Cart
+            </Button>
+            <Button variant="ghost" className="w-full mt-2" onClick={() => setShowSizeModal(false)}>
+              Cancel
+            </Button>
+          </Card>
+        </div>
+      )}
       <Link href="/shop">
-        <Button variant="ghost" className="gap-2 mb-6 text-muted-foreground" data-testid="button-back">
+        <Button variant="ghost" className="gap-2 mb-6 text-muted-foreground hover:bg-transparent hover:text-foreground transition-colors" data-testid="button-back">
           <ArrowLeft className="w-4 h-4" />
           Back to Shop
         </Button>
       </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        <div className="rounded-md overflow-hidden bg-card">
+        <div className="rounded-md overflow-hidden bg-card group">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full aspect-[3/4] object-cover"
+            className="w-full aspect-[3/4] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
             data-testid="img-product-detail"
+            loading="lazy"
           />
         </div>
 
@@ -103,59 +141,71 @@ export default function ProductPage() {
               {Math.round(((product.price - product.discountPrice) / product.price) * 100)}% off
             </span>
           </div>
-          <p className="text-muted-foreground mt-4 leading-relaxed text-sm" data-testid="text-product-description">
-            {product.description}
-          </p>
 
-          <div className="flex items-center gap-4 mt-8">
-            <div className="flex items-center border rounded-md">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                data-testid="button-quantity-minus"
-              >
-                <Minus className="w-4 h-4" />
-              </Button>
-              <span className="w-10 text-center text-sm font-medium" data-testid="text-quantity">
-                {quantity}
-              </span>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setQuantity(quantity + 1)}
-                data-testid="button-quantity-plus"
-              >
-                <Plus className="w-4 h-4" />
+          <div className="mt-6 space-y-4">
+            <p className="text-muted-foreground leading-relaxed text-sm" data-testid="text-product-description">
+              {product.description}
+            </p>
+            <div className="bg-muted/30 p-4 rounded-md space-y-2 border">
+              <p className="text-sm font-semibold">Material: 300 GSM Premium Matte Paper</p>
+              <p className="text-sm">Sizes: A4, A3</p>
+              <p className="text-xs text-muted-foreground">Printed on 300 GSM Premium Matte Paper for rich color depth and long-lasting durability.</p>
+            </div>
+          </div>
+
+          <div className="mt-8 space-y-4">
+             <div className="flex flex-wrap gap-3">
+               {["A4", "A3"].map((size) => (
+                 <Button
+                   key={size}
+                   variant={selectedSize === size ? "default" : "outline"}
+                   size="sm"
+                   className="min-w-[60px]"
+                   onClick={() => setSelectedSize(size)}
+                 >
+                   {size}
+                 </Button>
+               ))}
+             </div>
+
+            <div className="flex items-center gap-4">
+              <div className="flex items-center border rounded-md">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  data-testid="button-quantity-minus"
+                >
+                  <Minus className="w-4 h-4" />
+                </Button>
+                <span className="w-10 text-center text-sm font-medium" data-testid="text-quantity">
+                  {quantity}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setQuantity(quantity + 1)}
+                  data-testid="button-quantity-plus"
+                >
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </div>
+
+              <Button className="flex-1 gap-2 hover:shadow-md transition-shadow" onClick={handleAddToCart} data-testid="button-add-to-cart">
+                <ShoppingBag className="w-4 h-4" />
+                Add to Cart
               </Button>
             </div>
-
-            <Button className="flex-1 gap-2" onClick={handleAddToCart} data-testid="button-add-to-cart">
-              <ShoppingBag className="w-4 h-4" />
-              Add to Cart
-            </Button>
           </div>
 
           <div className="mt-8 space-y-3 border-t pt-6">
             <div className="flex items-center gap-2 text-sm">
               <Truck className="w-4 h-4 text-muted-foreground" />
-              <span>Free Shipping on orders above {"\u20B9"}500</span>
+              <span>Free Shipping on orders above {"\u20B9"}399</span>
             </div>
             <div className="flex items-center gap-2 text-sm">
               <RotateCcw className="w-4 h-4 text-muted-foreground" />
               <span>Easy Returns – 7 Days Return Policy</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-muted-foreground">Category:</span>
-              <span className="font-medium capitalize">{product.category}</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-muted-foreground">Material:</span>
-              <span className="font-medium">Premium Matte Paper</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <span className="text-muted-foreground">Sizes:</span>
-              <span className="font-medium">A4, A3, A2</span>
             </div>
           </div>
         </div>
