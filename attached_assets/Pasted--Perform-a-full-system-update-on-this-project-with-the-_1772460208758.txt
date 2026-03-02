@@ -1,0 +1,232 @@
+--- 
+
+Perform a full system update on this project with the following exact changes. Do not skip anything.
+
+---
+
+## 1️⃣ SHIPPING LOGIC UPDATE (INR Based)
+
+* Currency must be INR only.
+* Free shipping threshold: ₹399
+* If cart total is below ₹399:
+
+  * Add ₹30 shipping charge.
+* If cart total is ₹399 or above:
+
+  * Shipping becomes FREE.
+* Remove any USD references.
+* Ensure cart page and checkout page both use the same shipping calculation logic.
+* Ensure “You unlocked free shipping” message only appears when total >= ₹399.
+
+---
+
+## 2️⃣ MINIMUM ORDER RULE
+
+* Minimum quantity per order: 2 posters (any size).
+* Prevent checkout if total quantity < 2.
+* Show toast error:
+  “Minimum order quantity is 2 posters.”
+
+---
+
+## 3️⃣ SIZE SELECTION (MANDATORY BEFORE ADD TO CART)
+
+When user clicks “Add to Cart”:
+
+* If size not selected:
+
+  * Show modal popup:
+    “Please select the size of your poster.”
+* Available sizes:
+
+  * A4
+  * A3
+* Store selectedSize inside cart object.
+* Display selected size:
+
+  * In cart page
+  * In checkout page
+  * In order summary
+* Do NOT change pricing based on size.
+
+---
+
+## 4️⃣ PRODUCT MATERIAL INFO
+
+On product page:
+
+Add below description:
+
+Material: 300 GSM Premium Matte Paper
+Sizes: A4, A3
+Printed on 300 GSM Premium Matte Paper for rich color depth and long-lasting durability.
+
+Remove any 250gsm references.
+
+---
+
+## 5️⃣ FIX API ERROR HANDLING
+
+Currently product pages show empty state if API fails.
+
+Implement proper React Query error handling:
+
+* If /api/products fails:
+
+  * Show “Failed to load products” instead of “No posters found”
+* If /api/products/:id fails:
+
+  * Show “Product not found or failed to load”
+
+Do not silently swallow errors.
+
+---
+
+## 6️⃣ FIX EXPRESS WILDCARD ROUTE
+
+Replace:
+
+```js
+app.use("/{*path}")
+```
+
+With proper Express wildcard:
+
+```js
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+});
+```
+
+Ensure deep links don’t 404.
+
+---
+
+## 7️⃣ FIX MISSING /api/orders ROUTE
+
+Frontend posts to `/api/orders`.
+
+Implement Express route:
+
+```js
+app.post("/api/orders", async (req, res) => {
+  try {
+    const order = req.body;
+    console.log("New Order:", order);
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    return res.status(500).json({ error: "Order failed" });
+  }
+});
+```
+
+Ensure checkout does not break in dev mode.
+
+---
+
+## 8️⃣ FIX CUSTOM POSTER ID ISSUE
+
+Custom product uses id: -1.
+
+Cart links route to `/product/:id`.
+
+Fix this:
+
+* If product id === -1:
+
+  * Do not link to product page
+  * Display as “Custom Poster”
+  * Prevent broken routing
+
+---
+
+## 9️⃣ REMOVE DATABASE SEEDING IN PRODUCTION
+
+If using Express + database:
+
+* Remove automatic seedDatabase() on every server start.
+* Only allow seeding in development mode.
+
+---
+
+## 🔟 UI SMOOTHNESS IMPROVEMENTS
+
+Improve interaction quality:
+
+* Add hover scale effect on posters:
+
+  * transform: scale(1.03)
+  * smooth transition 0.3s ease
+* Add button hover effect:
+
+  * Slight shadow increase
+* Add loading skeleton for product grid.
+* Improve category filter buttons:
+
+  * Add active state styling
+  * Add subtle background highlight
+* Ensure no layout shift during image loading.
+
+---
+
+## 1️⃣1️⃣ CATEGORY VISUAL POLISH
+
+Improve category theme colors:
+
+Anime:
+
+* Black + Yellow gradient
+
+Marvel:
+
+* Black + Red gradient
+
+Cars:
+
+* Dark grey + subtle metallic tone
+
+Cricket:
+
+* Blue + teal accent
+
+Football:
+
+* Deep red gradient
+
+Others:
+
+* Neutral charcoal
+
+Keep premium minimal style.
+
+---
+
+## 1️⃣2️⃣ PERFORMANCE IMPROVEMENTS
+
+* Lazy load product images
+* Use dynamic imports for large chunks if needed
+* Reduce main JS bundle size warning
+* Ensure no console errors
+* Ensure no network 404 errors
+
+---
+
+## 1️⃣3️⃣ FINAL VERIFICATION CHECKLIST
+
+After all changes:
+
+* Shop loads correctly
+* Products display
+* Cart stores selectedSize
+* Shipping works correctly
+* Minimum quantity enforced
+* Checkout works
+* No 404 errors
+* No silent API failures
+* No console errors
+
+Do not modify unrelated logic.
+
+Apply changes cleanly and consistently across frontend and backend.
+
+---
