@@ -21,6 +21,7 @@ const categories = [
 const orientations = [
   { label: "All", value: "all" },
   { label: "Portrait", value: "portrait" },
+  { label: "Landscape", value: "landscape" },
 ];
 
 function ProductGridSkeleton() {

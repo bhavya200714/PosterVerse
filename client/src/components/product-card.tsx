@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full aspect-[3/4] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+            className={`w-full ${product.orientation === 'landscape' ? 'aspect-[4/3]' : 'aspect-[3/4]'} object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]`}
             loading="lazy"
             data-testid={`img-product-${product.id}`}
           />

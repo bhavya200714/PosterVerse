@@ -158,7 +158,7 @@ const seedProducts = [
     image: "/images/poster-cars-5.jpeg",
     category: "Cars",
     featured: false,
-    orientation: "portrait",
+    orientation: "landscape",
     isNew: false,
   },
   {
@@ -169,7 +169,7 @@ const seedProducts = [
     image: "/images/poster-cars-6.jpeg",
     category: "Cars",
     featured: false,
-    orientation: "portrait",
+    orientation: "landscape",
     isNew: false,
   },
   {
@@ -180,7 +180,7 @@ const seedProducts = [
     image: "/images/poster-cars-7.jpeg",
     category: "Cars",
     featured: false,
-    orientation: "portrait",
+    orientation: "landscape",
     isNew: false,
   },
   {
