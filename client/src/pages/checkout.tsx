@@ -9,10 +9,12 @@ import { Label } from "@/components/ui/label";
 import {
   getCartItems,
   getCartTotal,
+  getShippingDetails,
   clearCart,
   type CartItem,
 } from "@/lib/cart-store";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 interface OrderData {
   items: CartItem[];
@@ -57,12 +59,18 @@ export default function CheckoutPage() {
     setTotal(cartTotal);
     if (cartItems.length === 0) {
       navigate("/cart");
+    } else if (cartItems.reduce((sum, i) => sum + i.quantity, 0) < 2) {
+      toast({
+        title: "Minimum order required",
+        description: "Minimum order quantity is 2 posters.",
+        variant: "destructive",
+      });
+      navigate("/cart");
     }
-  }, [navigate]);
+  }, [navigate, toast]);
 
-  const shippingFree = total >= 500;
-  const shippingCost = shippingFree ? 0 : 49;
-  const grandTotal = total + shippingCost;
+  const { shipping, isFree } = getShippingDetails(total);
+  const grandTotal = total + shipping;
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -91,7 +99,7 @@ export default function CheckoutPage() {
 
   const formatProductList = (cartItems: CartItem[]): string => {
     return cartItems
-      .map((item) => `${item.product.name} \u00D7${item.quantity} \u2013 \u20B9${(item.product.discountPrice ?? item.product.price) * item.quantity}`)
+      .map((item) => `${item.product.id === -1 ? "Custom Poster" : item.product.name} [Size: ${item.selectedSize ?? "A4"}] \u00D7${item.quantity} \u2013 \u20B9${(item.product.discountPrice ?? item.product.price) * item.quantity}`)
       .join("\n");
   };
 
@@ -112,6 +120,13 @@ export default function CheckoutPage() {
     };
 
     try {
+      // API call to record order
+      await apiRequest("POST", "/api/orders", {
+        items,
+        total: grandTotal,
+        customer: formData
+      });
+
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -157,9 +172,12 @@ export default function CheckoutPage() {
         <Card className="mt-6 p-4 w-full text-left" data-testid="card-success-summary">
           <h3 className="text-sm font-semibold mb-2">Order Summary</h3>
           <div className="space-y-1 text-sm text-muted-foreground">
-            {orderData.items.map((item) => (
-              <div key={item.product.id} className="flex items-center justify-between gap-2" data-testid={`row-success-item-${item.product.id}`}>
-                <span className="truncate" data-testid={`text-success-product-${item.product.id}`}>{item.product.name} {"\u00D7"}{item.quantity}</span>
+            {orderData.items.map((item, idx) => (
+              <div key={`${item.product.id}-${idx}`} className="flex items-center justify-between gap-2" data-testid={`row-success-item-${item.product.id}`}>
+                <div className="flex flex-col min-w-0">
+                  <span className="truncate font-medium text-foreground" data-testid={`text-success-product-${item.product.id}`}>{item.product.id === -1 ? "Custom Poster" : item.product.name} {"\u00D7"}{item.quantity}</span>
+                  {item.selectedSize && <span className="text-xs">Size: {item.selectedSize}</span>}
+                </div>
                 <span className="shrink-0" data-testid={`text-success-price-${item.product.id}`}>{"\u20B9"} {(item.product.discountPrice ?? item.product.price) * item.quantity}</span>
               </div>
             ))}
@@ -306,7 +324,7 @@ export default function CheckoutPage() {
               </div>
               <div className="flex items-center justify-between gap-2 text-sm">
                 <span className="text-muted-foreground">Shipping</span>
-                <span data-testid="text-checkout-shipping">{shippingFree ? "Free" : "\u20B9 49"}</span>
+                <span data-testid="text-checkout-shipping">{isFree ? "Free" : `\u20B9 ${shipping}`}</span>
               </div>
               <div className="border-t pt-2 flex items-center justify-between gap-2 font-semibold">
                 <span>Total</span>

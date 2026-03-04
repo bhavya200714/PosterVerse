@@ -47,9 +47,20 @@ export default function Shop() {
   const [orientation, setOrientation] = useState("all");
   const [sortBy, setSortBy] = useState("default");
 
-  const { data: products, isLoading } = useQuery<Product[]>({
+  const { data: products, isLoading, error } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <h2 className="text-xl font-medium text-destructive">Failed to load products</h2>
+        <Button variant="outline" className="mt-4" onClick={() => window.location.reload()}>
+          Try Again
+        </Button>
+      </div>
+    );
+  }
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
@@ -126,17 +137,32 @@ export default function Shop() {
       </div>
 
       <div className="flex flex-wrap items-center gap-2 mb-4">
-        {categories.map((cat) => (
-          <Button
-            key={cat.value}
-            variant={category === cat.value ? "default" : "outline"}
-            size="sm"
-            onClick={() => setCategory(cat.value)}
-            data-testid={`button-category-${cat.value}`}
-          >
-            {cat.label}
-          </Button>
-        ))}
+        {categories.map((cat) => {
+          const isActive = category === cat.value;
+          let gradientClass = "";
+          
+          if (isActive) {
+            if (cat.value === "anime") gradientClass = "bg-gradient-to-r from-black to-yellow-500 text-white border-none shadow-md";
+            else if (cat.value === "cars") gradientClass = "bg-gradient-to-r from-gray-800 to-gray-400 text-white border-none shadow-md";
+            else if (cat.value === "cricket") gradientClass = "bg-gradient-to-r from-blue-700 to-teal-500 text-white border-none shadow-md";
+            else if (cat.value === "football") gradientClass = "bg-gradient-to-r from-red-800 to-red-500 text-white border-none shadow-md";
+            else if (cat.value === "others") gradientClass = "bg-charcoal text-white border-none shadow-md";
+            else gradientClass = "bg-primary text-primary-foreground shadow-md";
+          }
+
+          return (
+            <Button
+              key={cat.value}
+              variant={isActive ? "default" : "outline"}
+              size="sm"
+              className={`rounded-full px-4 transition-all duration-300 ${gradientClass}`}
+              onClick={() => setCategory(cat.value)}
+              data-testid={`button-category-${cat.value}`}
+            >
+              {cat.label}
+            </Button>
+          );
+        })}
       </div>
 
       <div className="flex flex-wrap items-center gap-2 mb-6">

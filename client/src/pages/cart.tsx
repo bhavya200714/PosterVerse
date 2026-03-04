@@ -44,6 +44,20 @@ export default function CartPage() {
     navigate("/checkout");
   };
 
+  const handleUpdateQuantity = (productId: number, qty: number) => {
+    updateQuantity(productId, qty);
+    refreshCart();
+  };
+
+  const handleRemove = (productId: number, productName: string) => {
+    removeFromCart(productId);
+    refreshCart();
+    toast({
+      title: "Removed from cart",
+      description: `${productName} has been removed.`,
+    });
+  };
+
   const { shipping, threshold, isFree } = getShippingDetails(total);
 
   return (
