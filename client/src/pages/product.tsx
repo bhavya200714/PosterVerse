@@ -148,7 +148,8 @@ export default function ProductPage() {
             </p>
             <div className="bg-muted/30 p-4 rounded-md space-y-2 border">
               <p className="text-sm font-semibold">Material: 300 GSM Premium Matte Paper</p>
-              <p className="text-sm">Sizes: A4, A3</p>
+              <p className="text-sm font-semibold">Orientation: {product.orientation === 'landscape' ? 'Landscape' : 'Portrait'}</p>
+              <p className="text-sm font-semibold">Sizes: A4, A3</p>
               <p className="text-xs text-muted-foreground">Printed on 300 GSM Premium Matte Paper for rich color depth and long-lasting durability.</p>
             </div>
           </div>

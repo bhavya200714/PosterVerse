@@ -85,6 +85,7 @@ export default function CartPage() {
               <Link href={item.product.id === -1 ? "/custom-studio" : `/product/${item.product.id}`}>
                 <h3 className="font-medium text-sm truncate" data-testid={`text-cart-name-${item.product.id}`}>
                   {item.product.id === -1 ? "Custom Poster" : item.product.name}
+                  {item.customName && <span className="text-xs font-normal ml-1">({item.customName})</span>}
                 </h3>
               </Link>
               <p className="text-xs text-muted-foreground capitalize mt-0.5">

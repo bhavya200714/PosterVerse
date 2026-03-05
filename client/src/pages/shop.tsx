@@ -208,7 +208,7 @@ export default function Shop() {
           <p className="text-xs text-muted-foreground mb-4" data-testid="text-result-count">
             {filteredProducts.length} poster{filteredProducts.length !== 1 ? "s" : ""} found
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 items-start">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

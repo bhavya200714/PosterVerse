@@ -99,7 +99,7 @@ export default function CheckoutPage() {
 
   const formatProductList = (cartItems: CartItem[]): string => {
     return cartItems
-      .map((item) => `${item.product.id === -1 ? "Custom Poster" : item.product.name} [Size: ${item.selectedSize ?? "A4"}] \u00D7${item.quantity} \u2013 \u20B9${(item.product.discountPrice ?? item.product.price) * item.quantity}`)
+      .map((item) => `${item.product.id === -1 ? "Custom Poster" : item.product.name}${item.customName ? ` (${item.customName})` : ""} [Size: ${item.selectedSize ?? "A4"}] \u00D7${item.quantity} \u2013 \u20B9${(item.product.discountPrice ?? item.product.price) * item.quantity}`)
       .join("\n");
   };
 
@@ -175,7 +175,11 @@ export default function CheckoutPage() {
             {orderData.items.map((item, idx) => (
               <div key={`${item.product.id}-${idx}`} className="flex items-center justify-between gap-2" data-testid={`row-success-item-${item.product.id}`}>
                 <div className="flex flex-col min-w-0">
-                  <span className="truncate font-medium text-foreground" data-testid={`text-success-product-${item.product.id}`}>{item.product.id === -1 ? "Custom Poster" : item.product.name} {"\u00D7"}{item.quantity}</span>
+                  <span className="truncate font-medium text-foreground" data-testid={`text-success-product-${item.product.id}`}>
+                    {item.product.id === -1 ? "Custom Poster" : item.product.name}
+                    {item.customName && <span className="text-xs ml-1">({item.customName})</span>}
+                    {" \u00D7"}{item.quantity}
+                  </span>
                   {item.selectedSize && <span className="text-xs">Size: {item.selectedSize}</span>}
                 </div>
                 <span className="shrink-0" data-testid={`text-success-price-${item.product.id}`}>{"\u20B9"} {(item.product.discountPrice ?? item.product.price) * item.quantity}</span>
