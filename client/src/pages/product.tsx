@@ -112,23 +112,18 @@ export default function ProductPage() {
         </Button>
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start">
-        <div className={`rounded-2xl overflow-hidden bg-muted/30 border shadow-xl group sticky top-24 ${product.orientation === 'landscape' ? 'aspect-[4/3] flex items-center justify-center' : 'aspect-[3/4]'}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="rounded-md overflow-hidden bg-card group">
           <img
             src={product.image}
             alt={product.name}
-            className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${product.orientation === 'landscape' ? 'scale-95 group-hover:scale-100' : ''}`}
+            className="w-full aspect-[3/4] object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
             data-testid="img-product-detail"
             loading="lazy"
           />
-          {product.orientation === 'landscape' && (
-            <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-lg text-[10px] text-white px-3 py-1 rounded-full uppercase font-bold tracking-widest border border-white/20">
-              Landscape Edition
-            </div>
-          )}
         </div>
 
-        <div className="flex flex-col py-4">
+        <div className="flex flex-col justify-center">
           <Badge variant="secondary" className="w-fit mb-3" data-testid="badge-category">
             {product.category}
           </Badge>
