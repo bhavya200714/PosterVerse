@@ -579,12 +579,78 @@ const seedProducts = [
     isNew: true,
     featured: true,
   },
+  {
+    name: "Nissan Skyline GT-R Legend",
+    description: "The iconic Nissan Skyline GT-R in stunning teal, a symbol of Japanese automotive excellence. This legendary sports car features turbocharged power and iconic racing heritage. Built for speed, designed for legends. Premium matte finish.",
+    price: randomPrice(),
+    discountPrice: discountTier("Nissan Skyline GT-R Legend"),
+    image: "/images/poster-cars-14.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
+  {
+    name: "Porsche 911 GT3 RS Performance",
+    description: "The silver Porsche 911 GT3 RS captured in pure performance glory. With aggressive aerodynamics and precision engineering, this masterpiece represents the pinnacle of automotive design. German engineering at its finest. Premium satin finish.",
+    price: randomPrice(),
+    discountPrice: discountTier("Porsche 911 GT3 RS Performance"),
+    image: "/images/poster-cars-15.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
+  {
+    name: "Red Bull Racing RB20 F1 Machine",
+    description: "The Oracle Red Bull Racing RB20 Formula 1 car engineered for pure speed and precision. With 1000+ horsepower and cutting-edge aerodynamics, this is F1 at its absolute peak. Built for speed, built to win. Museum-quality archival print.",
+    price: randomPrice(),
+    discountPrice: discountTier("Red Bull Racing RB20 F1 Machine"),
+    image: "/images/poster-cars-16.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: true,
+  },
+  {
+    name: "Ford Mustang Shelby GT Legend",
+    description: "The legendary Ford Mustang Shelby GT in striking red and black stripes. This American muscle car icon represents raw power and aggressive styling. From 1960s classics to modern performance, the Shelby is a driving experience unmatched. Premium matte paper.",
+    price: randomPrice(),
+    discountPrice: discountTier("Ford Mustang Shelby GT Legend"),
+    image: "/images/poster-cars-17.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Mercedes AMG GT Spectacular",
+    description: "The Mercedes AMG GT in eye-catching red, a masterpiece of German precision and luxury performance. With its sculpted curves and aggressive stance, this is automotive artistry at its finest. Gallery-grade print on premium paper.",
+    price: randomPrice(),
+    discountPrice: discountTier("Mercedes AMG GT Spectacular"),
+    image: "/images/poster-cars-18.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
+  {
+    name: "Porsche 911 GT3 RS Red Fury",
+    description: "The Porsche 911 GT3 RS in dramatic red, engineered for maximum downforce and speed. With a naturally aspirated engine and lightweight construction, this is a pure driving machine. Premium heavyweight print with vivid, fade-resistant inks.",
+    price: randomPrice(),
+    discountPrice: discountTier("Porsche 911 GT3 RS Red Fury"),
+    image: "/images/poster-cars-19.jpg",
+    category: "Cars",
+    orientation: "portrait",
+    isNew: true,
+    featured: false,
+  },
 ];
 
 export async function seedDatabase() {
   const existing = await db.select().from(products);
   const hasNewField = existing.length > 0 && existing[0].isNew != null;
-  const hasEnoughProducts = existing.length >= 51;
+  const hasEnoughProducts = existing.length >= seedProducts.length;
   if (existing.length === 0 || !hasNewField || !hasEnoughProducts) {
     if (existing.length > 0) {
       await db.delete(products);
